@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnHub Academy — Online Courses &amp; LMS | Demo Website</title>
+<meta name="description" content="Sample LMS homepage demo: online courses, student dashboard, enrolment and secure payments. Prepared by Eman Kanwal.">
+<style>
+  :root{
+    --navy:#1f3a5f;
+    --navy-dark:#152a47;
+    --blue:#2f6fb2;
+    --blue-soft:#e8f1fa;
+    --teal:#1d9e8a;
+    --cream:#f7f5ef;
+    --card:#ffffff;
+    --ink:#22303f;
+    --muted:#6b7a8a;
+    --line:#dfe7ee;
+    --gold:#e8a93c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--cream);color:var(--ink);line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none;color:inherit}
+  .demo-ribbon{
+    position:fixed;top:14px;right:-42px;z-index:60;
+    background:#b3282d;color:#fff;font-size:11px;font-weight:800;
+    letter-spacing:3px;padding:6px 52px;transform:rotate(38deg);
+    box-shadow:0 3px 10px rgba(0,0,0,.35);
+  }
+  .demo-pill{
+    display:inline-block;background:#b3282d;color:#fff;
+    font-size:10px;font-weight:800;letter-spacing:2px;
+    padding:3px 10px;border-radius:20px;vertical-align:middle;
+  }
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(31,58,95,.97);color:#fff;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 16px;box-shadow:0 2px 12px rgba(0,0,0,.2);
+  }
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand-mark{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,#5aa3e0,#2f6fb2);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;color:#fff;font-size:17px;
+  }
+  .brand-name{font-size:16px;font-weight:800}
+  .brand-sub{font-size:10px;color:#a9c8e8;letter-spacing:1.6px;text-transform:uppercase}
+  .top-cta{
+    background:var(--teal);color:#fff;font-weight:700;font-size:13px;
+    padding:8px 14px;border-radius:24px;white-space:nowrap;
+  }
+  .hero{
+    background:linear-gradient(160deg,#2f6fb2 0%,var(--navy) 60%,var(--navy-dark) 100%);
+    color:#fff;padding:44px 20px 40px;text-align:center;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:26px;
+    background:var(--cream);border-radius:26px 26px 0 0;
+  }
+  .hero-badge{
+    display:inline-block;border:1px solid rgba(255,255,255,.45);color:#cfe3f5;
+    font-size:11px;letter-spacing:2.2px;text-transform:uppercase;
+    padding:5px 14px;border-radius:20px;margin-bottom:16px;
+  }
+  .hero h1{font-size:34px;line-height:1.15;font-weight:900}
+  .hero h1 span{color:#ffd98f}
+  .hero-tag{margin:14px auto 6px;max-width:420px;font-size:15.5px;color:#dbe9f6}
+  .hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0 24px}
+  .chip{
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    font-size:12px;padding:6px 12px;border-radius:18px;color:#eaf2fa;
+  }
+  .chip b{color:#ffd98f;font-weight:800}
+  .btn{
+    display:inline-block;font-weight:800;font-size:16px;border-radius:30px;
+    padding:14px 26px;
+  }
+  .btn-enrol{background:var(--teal);color:#fff;box-shadow:0 8px 20px rgba(29,158,138,.4)}
+  .btn-ghost{
+    background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);
+    margin-left:8px;font-size:14px;padding:13px 20px;
+  }
+  .hero-note{font-size:12px;color:#a9c8e8;margin-top:14px}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  section{padding:30px 0 6px}
+  .sec-head{text-align:center;margin-bottom:18px}
+  .sec-kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:800}
+  .sec-title{font-size:25px;font-weight:900;color:var(--navy);margin-top:4px}
+  .sec-sub{font-size:13px;color:var(--muted);margin-top:4px}
+  .divider{width:54px;height:3px;background:var(--gold);border-radius:3px;margin:10px auto 0}
+  .course-list{display:grid;grid-template-columns:1fr;gap:12px}
+  .course{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:18px;box-shadow:0 2px 8px rgba(31,58,95,.06);
+  }
+  .course-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .course-icon{
+    width:46px;height:46px;border-radius:12px;flex:none;
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+  }
+  .course h3{font-size:16.5px;font-weight:800;color:var(--navy)}
+  .course p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .course-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .meta-chip{background:var(--blue-soft);color:var(--navy);font-size:12px;font-weight:700;padding:5px 10px;border-radius:14px}
+  .course-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+  .price{font-weight:900;color:var(--blue);font-size:16px}
+  .price small{display:block;font-size:11px;color:var(--muted);font-weight:600}
+  .enrol-btn{background:var(--navy);color:#fff;font-size:13px;font-weight:800;padding:9px 18px;border-radius:22px}
+  .sample-note{text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
+  .steps{display:grid;grid-template-columns:1fr;gap:10px}
+  .step{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .step-num{
+    width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;
+    font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;
+  }
+  .step h3{font-size:15px;font-weight:800;color:var(--navy)}
+  .step p{font-size:13px;color:var(--muted);margin-top:2px}
+  .dash{
+    background:linear-gradient(160deg,#eef5fc,#e2edf7);
+    border:1px solid var(--line);border-radius:16px;padding:20px;
+  }
+  .dash h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:12px}
+  .progress-row{margin-bottom:12px}
+  .progress-row .lbl{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--navy)}
+  .bar{height:9px;background:#d3e0ec;border-radius:6px;margin-top:5px;overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#2f6fb2,#1d9e8a)}
+  .dash-note{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .cta{text-align:center;padding:30px 16px 8px}
+  .cta h2{font-size:23px;font-weight:900;color:var(--navy)}
+  .cta p{font-size:14px;color:var(--muted);margin:6px auto 18px;max-width:420px}
+  footer{
+    margin-top:34px;background:var(--navy-dark);color:#a9c8e8;text-align:center;
+    padding:26px 16px 90px;font-size:12.5px;
+  }
+  footer .fbrand{color:#fff;font-size:16px;font-weight:800}
+  footer a{color:#ffd98f}
+  .credit{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:#8fb0cf}
+  .sticky-bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:55;
+    background:rgba(21,42,71,.97);padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    display:flex;gap:10px;box-shadow:0 -3px 14px rgba(0,0,0,.3);
+  }
+  .sticky-bar a{
+    flex:1;text-align:center;font-weight:800;font-size:14px;border-radius:24px;padding:12px 8px;
+  }
+  .sticky-enrol{background:var(--teal);color:#fff}
+  .sticky-browse{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">DEMO</div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">LH</div>
+    <div>
+      <div class="brand-name">LearnHub Academy</div>
+      <div class="brand-sub">Online Courses &middot; LMS</div>
+    </div>
+  </div>
+  <a class="top-cta" href="#courses">Enrol Now</a>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">Learn Anywhere &middot; Any Time</div>
+  <h1>Learn New Skills,<br><span>At Your Own Pace</span></h1>
+  <p class="hero-tag">Expert-led online courses with video lessons, quizzes, certificates and a personal student dashboard.</p>
+  <div class="hero-meta">
+    <span class="chip"><b>120+</b> Courses</span>
+    <span class="chip"><b>4.8&#9733;</b> Student Rating</span>
+    <span class="chip"><span class="demo-pill">DEMO</span>&nbsp; Sample website</span>
+  </div>
+  <a class="btn btn-enrol" href="#courses">Browse Courses</a>
+  <a class="btn btn-ghost" href="#dashboard">My Dashboard</a>
+  <p class="hero-note">Sample homepage demo — your courses, colours and logo will replace these placeholders.</p>
+</div>
+
+<div class="wrap">
+
+  <section id="courses">
+    <div class="sec-head">
+      <div class="sec-kicker">Popular Courses</div>
+      <h2 class="sec-title">Start Learning Today</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">A sample selection — your full course catalogue will appear here.</p>
+    </div>
+
+    <div class="course-list">
+      <div class="course">
+        <div class="course-top">
+          <div>
+            <h3>Web Design for Beginners</h3>
+            <p>HTML, CSS and WordPress — build your first website in 4 weeks, with live practice projects.</p>
+          </div>
+          <div class="course-icon" style="background:#e8f1fa">&#127760;</div>
+        </div>
+        <div class="course-meta">
+          <span class="meta-chip">24 Lessons</span>
+          <span class="meta-chip">4 Weeks</span>
+          <span class="meta-chip">Certificate</span>
+        </div>
+        <div class="course-foot">
+          <div class="price">$49<small>one-time payment</small></div>
+          <a class="enrol-btn" href="#cta">Enrol</a>
+        </div>
+      </div>
+
+      <div class="course">
+        <div class="course-top">
+          <div>
+            <h3>Spoken English &amp; Communication</h3>
+            <p>Daily speaking practice, vocabulary and confidence building — from beginner to fluent.</p>
+          </div>
+          <div class="course-icon" style="background:#e6f7f2">&#128483;</div>
+        </div>
+        <div class="course-meta">
+          <span class="meta-chip">30 Lessons</span>
+          <span class="meta-chip">6 Weeks</span>
+          <span class="meta-chip">Certificate</span>
+        </div>
+        <div class="course-foot">
+          <div class="price">$39<small>one-time payment</small></div>
+          <a class="enrol-btn" href="#cta">Enrol</a>
+        </div>
+      </div>
+
+      <div class="course">
+        <div class="course-top">
+          <div>
+            <h3>Digital Marketing Essentials</h3>
+            <p>Social media, SEO and ads — grow any business online with practical, step-by-step lessons.</p>
+          </div>
+          <div class="course-icon" style="background:#fdf3df">&#128200;</div>
+        </div>
+        <div class="course-meta">
+          <span class="meta-chip">20 Lessons</span>
+          <span class="meta-chip">4 Weeks</span>
+          <span class="meta-chip">Certificate</span>
+        </div>
+        <div class="course-foot">
+          <div class="price">$59<small>one-time payment</small></div>
+          <a class="enrol-btn" href="#cta">Enrol</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="sample-note">Sample courses and prices for demonstration — your real courses and fees will be added on the live website.</p>
+  </section>
+
+  <section id="how">
+    <div class="sec-head">
+      <div class="sec-kicker">How It Works</div>
+      <h2 class="sec-title">Learning Made Simple</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><h3>Choose a course</h3><p>Browse the catalogue, read the lesson plan and pick the course that fits your goal.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><h3>Enrol &amp; pay securely</h3><p>Pay online in one tap — card or local payment — and get instant access to all lessons.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><h3>Learn &amp; get certified</h3><p>Watch lessons, take quizzes, track progress in your dashboard and download your certificate.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <div class="sec-head">
+      <div class="sec-kicker">Student Dashboard</div>
+      <h2 class="sec-title">Your Progress, In One Place</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">Every student gets a personal dashboard — lessons, quizzes, certificates and payments.</p>
+    </div>
+    <div class="dash">
+      <h3>Welcome back, Student &#128075;</h3>
+      <div class="progress-row">
+        <div class="lbl"><span>Web Design for Beginners</span><span>75%</span></div>
+        <div class="bar"><i style="width:75%"></i></div>
+      </div>
+      <div class="progress-row">
+        <div class="lbl"><span>Spoken English</span><span>40%</span></div>
+        <div class="bar"><i style="width:40%"></i></div>
+      </div>
+      <div class="progress-row">
+        <div class="lbl"><span>Digital Marketing</span><span>10%</span></div>
+        <div class="bar"><i style="width:10%"></i></div>
+      </div>
+      <p class="dash-note">Next lesson: &ldquo;Building your first homepage&rdquo; &middot; Quiz due Friday &middot; 1 certificate earned</p>
+    </div>
+  </section>
+
+  <div class="cta" id="cta">
+    <h2>Ready to Start Learning?</h2>
+    <p>Create your free account today and explore the first lesson of any course — no payment needed to look around.</p>
+    <a class="btn btn-enrol" href="#courses">Create Free Account</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="fbrand">LearnHub Academy</div>
+  <p>Online courses &middot; Student dashboard &middot; Certificates<br>
+  Contact: <a href="#">hello@learnhub.example</a></p>
+  <p style="margin-top:8px">This is a sample DEMO website prepared for presentation purposes only.</p>
+  <div class="credit">Demo website prepared by <b style="color:#ffd98f">Eman Kanwal</b> — Web Developer</div>
+</footer>
+
+<div class="sticky-bar">
+  <a class="sticky-enrol" href="#courses">Enrol Now</a>
+  <a class="sticky-browse" href="#courses">Browse Courses</a>
+</div>
+
+
+<div style="margin:0;padding:20px 16px 26px;background:#0b7a64;color:#ffffff;text-align:center;font-family:Arial,sans-serif;">
+  <div style="font-size:15px;font-weight:700;margin-bottom:5px;">Free demo by Eman Kanwal — WordPress Website Designer</div>
+  <div style="font-size:13.5px;opacity:.92;">Like this style for your business? <a href="index.html" style="color:#ffd98a;font-weight:700;">View my portfolio</a> &nbsp;·&nbsp; <a href="mailto:emankanwal59@gmail.com" style="color:#ffd98a;font-weight:700;">emankanwal59@gmail.com</a></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo — Online Store</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial, sans-serif; }
+  body { background:#f7f8fc; color:#263238; width:390px; }
+  .topbar { background:#ffffff; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 6px rgba(0,0,0,.06); }
+  .logo { font-size:20px; font-weight:700; color:#7c3aed; }
+  .logo span { color:#f59e0b; }
+  .icons { font-size:19px; color:#64748b; letter-spacing:6px; }
+  .search { margin:14px 20px 4px; background:#fff; border-radius:30px; padding:11px 18px; color:#94a3b8; font-size:14px; box-shadow:0 2px 8px rgba(30,41,59,.05); }
+  .banner { margin:16px 20px 6px; background:linear-gradient(140deg,#ede9fe,#fdf6e9); border-radius:16px; padding:24px 20px; text-align:center; }
+  .banner .tag { display:inline-block; background:#7c3aed; color:#fff; font-size:11.5px; font-weight:700; padding:4px 12px; border-radius:20px; margin-bottom:10px; }
+  .banner h1 { font-size:24px; line-height:1.3; color:#1e293b; margin-bottom:8px; }
+  .banner h1 span { color:#7c3aed; }
+  .banner p { font-size:14px; color:#5b6b7f; line-height:1.6; margin-bottom:16px; }
+  .btn { display:inline-block; background:#7c3aed; color:#fff; padding:11px 24px; border-radius:30px; font-size:14.5px; font-weight:600; text-decoration:none; box-shadow:0 4px 12px rgba(124,58,237,.3); }
+  .chips { display:flex; gap:8px; padding:16px 20px 4px; flex-wrap:wrap; }
+  .chip { background:#fff; border:1.5px solid #e2e8f0; color:#475569; font-size:13px; font-weight:600; padding:7px 14px; border-radius:20px; }
+  .chip.on { background:#7c3aed; border-color:#7c3aed; color:#fff; }
+  .sec { padding:18px 20px 4px; }
+  .sec h2 { font-size:19px; color:#1e293b; margin-bottom:4px; }
+  .sec .sub { color:#8494a9; font-size:13px; margin-bottom:16px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .prod { background:#fff; border-radius:14px; padding:12px; box-shadow:0 2px 10px rgba(30,41,59,.06); }
+  .thumb { height:86px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:38px; margin-bottom:10px; }
+  .t1 { background:#ede9fe; } .t2 { background:#fdeeda; } .t3 { background:#e2f6ec; } .t4 { background:#e3edff; }
+  .prod h3 { font-size:14px; color:#1e293b; margin-bottom:2px; }
+  .prod .cat { font-size:11.5px; color:#94a3b8; margin-bottom:6px; }
+  .prod .price { font-size:15px; font-weight:700; color:#7c3aed; }
+  .prod .price s { color:#b6c2d2; font-weight:400; font-size:12.5px; margin-left:4px; }
+  .add { display:block; text-align:center; margin-top:9px; background:#f5f3ff; color:#7c3aed; font-size:13px; font-weight:700; padding:8px 0; border-radius:9px; text-decoration:none; }
+  .perks { display:flex; gap:10px; padding:18px 20px 2px; }
+  .perk { flex:1; background:#fff; border-radius:14px; padding:14px 6px; text-align:center; box-shadow:0 2px 10px rgba(30,41,59,.06); }
+  .perk .e { font-size:21px; display:block; margin-bottom:5px; }
+  .perk span { font-size:11.5px; color:#64748b; line-height:1.4; display:block; }
+  .cta { margin:22px 20px; background:linear-gradient(140deg,#7c3aed,#8b5cf6); border-radius:16px; padding:24px 20px; text-align:center; color:#fff; }
+  .cta h2 { font-size:19px; margin-bottom:8px; }
+  .cta p { font-size:13.5px; opacity:.92; margin-bottom:15px; line-height:1.6; }
+  .cta .btn { background:#fff; color:#7c3aed; box-shadow:none; }
+  .foot { text-align:center; color:#9aa9bd; font-size:12px; padding:4px 0 26px; line-height:1.7; }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">Shop<span>Ease</span></div>
+    <div class="icons">♡ 🛒</div>
+  </div>
+
+  <div class="search">🔍 &nbsp;Search products…</div>
+
+  <div class="banner">
+    <div class="tag">YOUR ONLINE STORE</div>
+    <h1>Sell Online,<br><span>Right From Mobile</span></h1>
+    <p>Your own store that works like an app — customers browse, order and pay online, any time.</p>
+    <a class="btn" href="#">Shop Now</a>
+  </div>
+
+  <div class="chips">
+    <div class="chip on">All</div>
+    <div class="chip">Electronics</div>
+    <div class="chip">Fashion</div>
+    <div class="chip">Home</div>
+    <div class="chip">More</div>
+  </div>
+
+  <div class="sec">
+    <h2>Featured Products</h2>
+    <div class="sub">Add your products — each with photo, price &amp; stock</div>
+    <div class="grid">
+      <div class="prod">
+        <div class="thumb t1">🎧</div>
+        <h3>Wireless Headphones</h3>
+        <div class="cat">Electronics</div>
+        <div class="price">₹1,499 <s>₹2,999</s></div>
+        <a class="add" href="#">Add to Cart</a>
+      </div>
+      <div class="prod">
+        <div class="thumb t2">⌚</div>
+        <h3>Smart Watch</h3>
+        <div class="cat">Electronics</div>
+        <div class="price">₹2,999 <s>₹4,999</s></div>
+        <a class="add" href="#">Add to Cart</a>
+      </div>
+      <div class="prod">
+        <div class="thumb t3">👟</div>
+        <h3>Running Shoes</h3>
+        <div class="cat">Fashion</div>
+        <div class="price">₹1,899 <s>₹2,799</s></div>
+        <a class="add" href="#">Add to Cart</a>
+      </div>
+      <div class="prod">
+        <div class="thumb t4">👜</div>
+        <h3>Leather Handbag</h3>
+        <div class="cat">Fashion</div>
+        <div class="price">₹1,299 <s>₹1,999</s></div>
+        <a class="add" href="#">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="perks">
+    <div class="perk"><span class="e">🚚</span><span>Fast Delivery</span></div>
+    <div class="perk"><span class="e">💳</span><span>Online Payment</span></div>
+    <div class="perk"><span class="e">💬</span><span>WhatsApp Orders</span></div>
+  </div>
+
+  <div class="cta">
+    <h2>Like This Store?</h2>
+    <p>This is a free demo. Your real store is built with your own products, prices and brand.</p>
+    <a class="btn" href="#">Order on WhatsApp</a>
+  </div>
+
+  <div class="foot">ShopEase — Your Store, Online<br>Demo design preview</div>
+
+<div style="margin:0;padding:20px 16px 26px;background:#0b7a64;color:#ffffff;text-align:center;font-family:Arial,sans-serif;">
+  <div style="font-size:15px;font-weight:700;margin-bottom:5px;">Free demo by Eman Kanwal — WordPress Website Designer</div>
+  <div style="font-size:13.5px;opacity:.92;">Like this style for your business? <a href="index.html" style="color:#ffd98a;font-weight:700;">View my portfolio</a> &nbsp;·&nbsp; <a href="mailto:emankanwal59@gmail.com" style="color:#ffd98a;font-weight:700;">emankanwal59@gmail.com</a></div>
+</div>
+</body>
+</html>

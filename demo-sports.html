@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Champion Sports Academy — Train. Play. Win.</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background:#eef6f3;
+    color:#23403a;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page {
+    max-width:390px;
+    margin:0 auto;
+    background:#ffffff;
+    min-height:100vh;
+    box-shadow:0 0 24px rgba(20,80,66,.10);
+    overflow:hidden;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px;
+    background:#ffffff;
+    border-bottom:1px solid #e3f0ea;
+  }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .logo-badge {
+    width:38px; height:38px; border-radius:12px;
+    background:linear-gradient(135deg,#2fbf9b,#17a2b8);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .brand-name { font-size:16px; font-weight:800; color:#14532d; line-height:1.15; }
+  .brand-sub { font-size:10px; letter-spacing:2px; color:#5f8a7d; font-weight:600; }
+  .menu-dots { display:flex; flex-direction:column; gap:4px; padding:4px; }
+  .menu-dots span { width:20px; height:2.5px; border-radius:2px; background:#2fbf9b; display:block; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding:30px 20px 26px;
+    background:linear-gradient(160deg,#e8faf3 0%,#e6f7fb 60%,#f4fcF9 100%);
+    text-align:center;
+    position:relative;
+  }
+  .hero-pill {
+    display:inline-block;
+    background:#ffffff; color:#0e9f7a;
+    font-size:11px; font-weight:700; letter-spacing:1px;
+    padding:6px 14px; border-radius:999px;
+    border:1px solid #cdeee1;
+    margin-bottom:14px;
+  }
+  .hero h1 {
+    font-size:34px; line-height:1.12; font-weight:900; color:#123c2e;
+    margin-bottom:10px;
+  }
+  .hero h1 .accent { color:#17a2b8; }
+  .hero p { font-size:14px; line-height:1.55; color:#477065; margin:0 auto 20px; max-width:300px; }
+  .btn-primary {
+    display:inline-block;
+    background:linear-gradient(135deg,#2fbf9b,#17a2b8);
+    color:#fff; font-weight:800; font-size:15px;
+    padding:13px 34px; border-radius:999px; text-decoration:none;
+    box-shadow:0 8px 18px rgba(23,162,184,.28);
+  }
+  .btn-ghost {
+    display:inline-block; margin-left:8px;
+    background:#ffffff; color:#0e9f7a; font-weight:700; font-size:14px;
+    padding:12px 20px; border-radius:999px; text-decoration:none;
+    border:1.5px solid #bfe8d8;
+  }
+  .hero-shapes { display:flex; justify-content:center; gap:10px; margin-top:24px; }
+  .shape {
+    width:64px; height:64px; border-radius:18px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .shape svg { width:30px; height:30px; }
+  .s1 { background:#d9f6e9; } .s2 { background:#d9f2fa; }
+  .s3 { background:#fff3d6; } .s4 { background:#ffe9ec; }
+
+  /* ---------- Stats strip ---------- */
+  .stats {
+    display:flex; justify-content:space-around;
+    background:#14532d;
+    padding:16px 8px;
+  }
+  .stat { text-align:center; }
+  .stat .num { font-size:19px; font-weight:900; color:#ffffff; }
+  .stat .lbl { font-size:10.5px; color:#a9dcc8; letter-spacing:.4px; margin-top:2px; }
+
+  /* ---------- Sections ---------- */
+  section { padding:26px 18px 6px; }
+  .sec-head { text-align:center; margin-bottom:16px; }
+  .sec-tag { font-size:10.5px; font-weight:800; letter-spacing:2px; color:#17a2b8; text-transform:uppercase; }
+  .sec-head h2 { font-size:21px; font-weight:900; color:#123c2e; margin-top:4px; }
+  .sec-head p { font-size:12.5px; color:#6b8d82; margin-top:4px; }
+
+  /* ---------- Programs ---------- */
+  .programs { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .card {
+    border-radius:16px; padding:16px 14px;
+    border:1px solid #e6f2ec;
+  }
+  .card .icon {
+    width:44px; height:44px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:10px;
+  }
+  .card .icon svg { width:24px; height:24px; }
+  .card h3 { font-size:15px; font-weight:800; color:#123c2e; margin-bottom:4px; }
+  .card p { font-size:11.5px; line-height:1.5; color:#5f7f74; }
+  .card .meta { font-size:11px; font-weight:700; color:#0e9f7a; margin-top:8px; display:block; }
+  .c-football { background:#f2fbf6; } .c-football .icon { background:#d9f6e9; }
+  .c-cricket  { background:#fdfaf2; } .c-cricket .icon  { background:#ffefd2; }
+  .c-basket   { background:#fdf5f2; } .c-basket .icon   { background:#ffe3d9; }
+  .c-swim     { background:#f2f9fd; } .c-swim .icon     { background:#d6efff; }
+
+  /* ---------- Why us ---------- */
+  .why { display:flex; flex-direction:column; gap:10px; }
+  .why-row {
+    display:flex; gap:12px; align-items:flex-start;
+    background:#f7fbf9; border:1px solid #e6f2ec; border-radius:14px; padding:13px 14px;
+  }
+  .why-row .tick {
+    flex:0 0 26px; width:26px; height:26px; border-radius:50%;
+    background:#2fbf9b; display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .why-row h4 { font-size:13.5px; font-weight:800; color:#123c2e; }
+  .why-row p { font-size:12px; color:#5f7f74; line-height:1.5; margin-top:2px; }
+
+  /* ---------- Schedule ---------- */
+  .schedule { display:flex; flex-direction:column; gap:9px; }
+  .sched-row {
+    display:flex; align-items:center; justify-content:space-between;
+    background:#ffffff; border:1px solid #e6f2ec; border-radius:12px; padding:11px 14px;
+  }
+  .sched-row .left { display:flex; align-items:center; gap:11px; }
+  .day-badge {
+    background:#e8faf3; color:#0e9f7a; font-weight:800; font-size:11px;
+    border-radius:8px; padding:6px 8px; text-align:center; line-height:1.25; min-width:44px;
+  }
+  .sched-row .sport { font-size:13.5px; font-weight:700; color:#23403a; }
+  .sched-row .age { font-size:11px; color:#7d9a90; }
+  .sched-row .time { font-size:12px; font-weight:700; color:#17a2b8; white-space:nowrap; }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial {
+    background:linear-gradient(150deg,#e8faf3,#e6f7fb);
+    border-radius:18px; padding:20px 18px; text-align:center;
+  }
+  .stars { color:#f5b301; font-size:16px; letter-spacing:3px; margin-bottom:8px; }
+  .testimonial p { font-size:13.5px; line-height:1.6; color:#33584d; font-style:italic; }
+  .testimonial .who { margin-top:10px; font-size:12px; font-weight:800; color:#123c2e; font-style:normal; }
+  .testimonial .who span { display:block; font-weight:600; color:#6b8d82; font-size:11px; margin-top:1px; }
+
+  /* ---------- Enroll form ---------- */
+  .enroll-box {
+    background:#f7fbf9; border:1px solid #dcefe5; border-radius:18px; padding:18px 16px 20px;
+  }
+  .field { margin-bottom:11px; }
+  .field label { display:block; font-size:11.5px; font-weight:700; color:#477065; margin-bottom:5px; }
+  .field input, .field select, .field textarea {
+    width:100%; padding:11px 12px; font-size:13.5px; font-family:inherit;
+    border:1.5px solid #dcefe5; border-radius:10px; background:#ffffff; color:#23403a;
+  }
+  .field textarea { resize:none; }
+  .btn-submit {
+    width:100%; border:none; cursor:pointer;
+    background:linear-gradient(135deg,#2fbf9b,#17a2b8);
+    color:#fff; font-weight:800; font-size:15px;
+    padding:13px; border-radius:999px; margin-top:4px;
+    box-shadow:0 8px 18px rgba(23,162,184,.25);
+  }
+  .form-note { text-align:center; font-size:11px; color:#7d9a90; margin-top:10px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top:26px;
+    background:#14532d; color:#d9efe4;
+    padding:22px 18px 20px; text-align:center;
+  }
+  footer .f-name { font-size:15px; font-weight:900; color:#ffffff; }
+  footer p { font-size:11.5px; line-height:1.7; color:#a9dcc8; margin-top:6px; }
+  footer .f-contact { margin-top:10px; font-size:12.5px; font-weight:700; color:#ffffff; line-height:1.8; }
+  footer .copy { margin-top:12px; font-size:10.5px; color:#7fb89e; border-top:1px solid rgba(255,255,255,.15); padding-top:12px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8 1 5.4L12 14.3 7.1 16.9l1-5.4L4.2 7.7l5.4-.8L12 2z" fill="#ffffff"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">Champion Sports<br>Academy</div>
+        <div class="brand-sub">EST. 2012</div>
+      </div>
+    </div>
+    <div class="menu-dots"><span></span><span></span><span></span></div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="hero-pill">ADMISSIONS OPEN — 2026 SEASON</span>
+    <h1>Train. Play. <span class="accent">Win.</span></h1>
+    <p>Professional coaching for kids and teens aged 5–17. First trial session is completely free — come and try any sport.</p>
+    <a class="btn-primary" href="#enroll">Enroll Now</a>
+    <a class="btn-ghost" href="#programs">Programs</a>
+    <div class="hero-shapes">
+      <div class="shape s1"><svg viewBox="0 0 24 24" fill="none" stroke="#0e9f7a" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7l3 3.2-1.2 4.3h-3.6L9 10.2 12 7zM3.5 10h5M15.5 10h5M7 19l3-3.5M17 19l-3-3.5"/></svg></div>
+      <div class="shape s2"><svg viewBox="0 0 24 24" fill="none" stroke="#17a2b8" stroke-width="1.8"><path d="M4 20c4-1 5-4 5-8V5l3-2 3 2v7c0 4 1 7 5 8-3 1-6 0-8-2-2 2-5 3-8 2z"/></svg></div>
+      <div class="shape s3"><svg viewBox="0 0 24 24" fill="none" stroke="#e09c00" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg></div>
+      <div class="shape s4"><svg viewBox="0 0 24 24" fill="none" stroke="#e2607a" stroke-width="1.8"><path d="M3 17c2.5 0 2.5 1.6 5 1.6S10.5 17 13 17s2.5 1.6 5 1.6 2.5-1.6 3-1.6M3 20c2.5 0 2.5 1.6 5 1.6S10.5 20 13 20s2.5 1.6 5 1.6 2.5-1.6 3-1.6M12 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM12 9v5"/></svg></div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><div class="num">1,200+</div><div class="lbl">Students</div></div>
+    <div class="stat"><div class="num">25+</div><div class="lbl">Expert Coaches</div></div>
+    <div class="stat"><div class="num">140+</div><div class="lbl">Trophies Won</div></div>
+    <div class="stat"><div class="num">12</div><div class="lbl">Years</div></div>
+  </div>
+
+  <!-- Programs -->
+  <section id="programs">
+    <div class="sec-head">
+      <div class="sec-tag">Our Programs</div>
+      <h2>Pick Your Sport</h2>
+      <p>Age-wise batches, small groups, certified coaches.</p>
+    </div>
+    <div class="programs">
+      <div class="card c-football">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0e9f7a" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7l3 3.2-1.2 4.3h-3.6L9 10.2 12 7zM3.5 10h5M15.5 10h5M7 19l3-3.5M17 19l-3-3.5"/></svg></div>
+        <h3>Football</h3>
+        <p>Skills, teamwork and match practice on a full-size turf ground.</p>
+        <span class="meta">Ages 5–17 · Mon / Wed / Fri</span>
+      </div>
+      <div class="card c-cricket">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#d18d00" stroke-width="1.8"><path d="M15 3l6 6-9.5 9.5a2.1 2.1 0 0 1-3-3L15 3zM13 5l6 6"/><circle cx="6" cy="18" r="2.4"/></svg></div>
+        <h3>Cricket</h3>
+        <p>Batting, bowling and fielding drills with net sessions every week.</p>
+        <span class="meta">Ages 6–17 · Tue / Thu / Sat</span>
+      </div>
+      <div class="card c-basket">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e2607a" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18"/></svg></div>
+        <h3>Basketball</h3>
+        <p>Shooting, dribbling and fitness training on an indoor court.</p>
+        <span class="meta">Ages 7–17 · Mon / Thu</span>
+      </div>
+      <div class="card c-swim">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#17a2b8" stroke-width="1.8"><path d="M3 17c2.5 0 2.5 1.6 5 1.6S10.5 17 13 17s2.5 1.6 5 1.6 2.5-1.6 3-1.6M3 20.5c2.5 0 2.5 1.6 5 1.6s2.5-1.6 5-1.6 2.5 1.6 5 1.6 2.5-1.6 3-1.6M15.5 4a2.4 2.4 0 1 1 0 4.8 2.4 2.4 0 0 1 0-4.8zM9 13l3.5-4L15 12l3-1.5"/></svg></div>
+        <h3>Swimming</h3>
+        <p>Learn-to-swim through advanced strokes, with lifeguard supervision.</p>
+        <span class="meta">Ages 4–16 · All week</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag">Why Us</div>
+      <h2>Why Parents Choose Us</h2>
+    </div>
+    <div class="why">
+      <div class="why-row">
+        <div class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <div><h4>Certified, background-checked coaches</h4><p>Every coach is trained, certified and experienced with children.</p></div>
+      </div>
+      <div class="why-row">
+        <div class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <div><h4>Small batches — max 15 students</h4><p>Personal attention in every session, so no child is left behind.</p></div>
+      </div>
+      <div class="why-row">
+        <div class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+        <div><h4>Monthly progress reports</h4><p>Parents receive a clear report on skills, fitness and attendance.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-tag">This Week</div>
+      <h2>Training Schedule</h2>
+    </div>
+    <div class="schedule">
+      <div class="sched-row">
+        <div class="left"><div class="day-badge">MON<br>WED</div><div><div class="sport">Football — Juniors</div><div class="age">Ages 5–10 · Ground A</div></div></div>
+        <div class="time">4–5:30 PM</div>
+      </div>
+      <div class="sched-row">
+        <div class="left"><div class="day-badge">TUE<br>THU</div><div><div class="sport">Cricket — Nets</div><div class="age">Ages 8–14 · Nets 1–3</div></div></div>
+        <div class="time">5–7 PM</div>
+      </div>
+      <div class="sched-row">
+        <div class="left"><div class="day-badge">SAT</div><div><div class="sport">Swimming — Beginners</div><div class="age">Ages 4–8 · Main Pool</div></div></div>
+        <div class="time">9–10 AM</div>
+      </div>
+      <div class="sched-row">
+        <div class="left"><div class="day-badge">SUN</div><div><div class="sport">Friendly Matches</div><div class="age">All squads · Main Ground</div></div></div>
+        <div class="time">8–11 AM</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"My son joined for football last year and his confidence has completely changed. The coaches are patient, professional, and the monthly reports keep us involved."</p>
+      <div class="who">Sarah Mitchell<span>Parent — Football Program</span></div>
+    </div>
+  </section>
+
+  <!-- Enroll form -->
+  <section id="enroll">
+    <div class="sec-head">
+      <div class="sec-tag">Get Started</div>
+      <h2>Enroll Now</h2>
+      <p>Send an enquiry — we reply within one working day.</p>
+    </div>
+    <form class="enroll-box" onsubmit="return false;">
+      <div class="field">
+        <label for="pname">Parent / Student Name</label>
+        <input id="pname" type="text" placeholder="e.g. Ahmed Khan">
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input id="phone" type="tel" placeholder="e.g. 0300 1234567">
+      </div>
+      <div class="field">
+        <label for="sport">Choose a Sport</label>
+        <select id="sport">
+          <option>Football</option>
+          <option>Cricket</option>
+          <option>Basketball</option>
+          <option>Swimming</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="msg">Message</label>
+        <textarea id="msg" rows="3" placeholder="Child's age, experience, any questions…"></textarea>
+      </div>
+      <button class="btn-submit" type="submit">Send Enquiry</button>
+      <div class="form-note">Free trial session included with every enquiry.</div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="f-name">Champion Sports Academy</div>
+    <p>Building strong bodies, sharp minds<br>and true team spirit since 2012.</p>
+    <div class="f-contact">
+      123 Stadium Road, Sports Complex<br>
+      Call: 0300 123 4567 · WhatsApp: 0300 123 4567<br>
+      Email: info@championsports.example
+    </div>
+    <div class="copy">© 2026 Champion Sports Academy. All rights reserved.</div>
+  </footer>
+
+</div>
+
+<div style="margin:0;padding:20px 16px 26px;background:#0b7a64;color:#ffffff;text-align:center;font-family:Arial,sans-serif;">
+  <div style="font-size:15px;font-weight:700;margin-bottom:5px;">Free demo by Eman Kanwal — WordPress Website Designer</div>
+  <div style="font-size:13.5px;opacity:.92;">Like this style for your business? <a href="index.html" style="color:#ffd98a;font-weight:700;">View my portfolio</a> &nbsp;·&nbsp; <a href="mailto:emankanwal59@gmail.com" style="color:#ffd98a;font-weight:700;">emankanwal59@gmail.com</a></div>
+</div>
+</body>
+</html>

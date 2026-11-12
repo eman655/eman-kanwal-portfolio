@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe &amp; Co — Rahim Yar Khan | Demo Website</title>
+<meta name="description" content="Cafe & Co, East Canal Road, Rahim Yar Khan. Fresh food, great coffee, open daily 11 AM – 12 Midnight. Order on WhatsApp.">
+<style>
+  :root{
+    --coffee:#3b2416;
+    --coffee-dark:#241407;
+    --cream:#f7efe3;
+    --cream-2:#efe3cf;
+    --caramel:#c68a3f;
+    --caramel-soft:#e3b877;
+    --ink:#2b1c10;
+    --muted:#7a6a58;
+    --green:#1faa55;
+    --card:#fffaf2;
+    --line:#e6d7bf;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--cream);color:var(--ink);line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block}
+  a{text-decoration:none;color:inherit}
+
+  /* ---------- DEMO ribbon ---------- */
+  .demo-ribbon{
+    position:fixed;top:14px;right:-42px;z-index:60;
+    background:#b3282d;color:#fff;font-size:11px;font-weight:800;
+    letter-spacing:3px;padding:6px 52px;transform:rotate(38deg);
+    box-shadow:0 3px 10px rgba(0,0,0,.35);
+  }
+  .demo-pill{
+    display:inline-block;background:#b3282d;color:#fff;
+    font-size:10px;font-weight:800;letter-spacing:2px;
+    padding:3px 10px;border-radius:20px;vertical-align:middle;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(36,20,7,.96);color:var(--cream);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 16px;box-shadow:0 2px 12px rgba(0,0,0,.25);
+  }
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, var(--caramel-soft), var(--caramel) 65%, #9a6524);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;color:var(--coffee-dark);font-size:15px;letter-spacing:.5px;
+    border:2px solid rgba(255,255,255,.25);
+  }
+  .brand-name{font-size:17px;font-weight:800;letter-spacing:.3px}
+  .brand-sub{font-size:10px;color:var(--caramel-soft);letter-spacing:1.6px;text-transform:uppercase}
+  .top-call{
+    background:var(--green);color:#fff;font-weight:700;font-size:13px;
+    padding:8px 14px;border-radius:24px;white-space:nowrap;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(120% 90% at 85% -10%, rgba(227,184,119,.35) 0%, rgba(227,184,119,0) 55%),
+      radial-gradient(90% 70% at -10% 110%, rgba(198,138,63,.28) 0%, rgba(198,138,63,0) 55%),
+      linear-gradient(160deg, #4a2c17 0%, var(--coffee) 45%, var(--coffee-dark) 100%);
+    color:var(--cream);padding:44px 20px 38px;text-align:center;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:26px;
+    background:var(--cream);border-radius:26px 26px 0 0;
+  }
+  .hero-badge{
+    display:inline-block;border:1px solid rgba(227,184,119,.6);color:var(--caramel-soft);
+    font-size:11px;letter-spacing:2.4px;text-transform:uppercase;
+    padding:5px 14px;border-radius:20px;margin-bottom:16px;
+  }
+  .hero h1{font-size:42px;line-height:1.08;font-weight:900;letter-spacing:.5px}
+  .hero h1 .amp{color:var(--caramel-soft)}
+  .hero-tag{margin:14px auto 6px;max-width:420px;font-size:16px;color:#ecdfc9}
+  .hero-urdu{direction:rtl;font-size:15px;color:var(--caramel-soft);margin-top:8px}
+  .hero-meta{
+    display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0 24px;
+  }
+  .chip{
+    background:rgba(255,250,242,.1);border:1px solid rgba(255,250,242,.22);
+    font-size:12px;padding:6px 12px;border-radius:18px;color:#f3e8d4;
+  }
+  .chip b{color:#ffd98f;font-weight:800}
+  .btn{
+    display:inline-block;font-weight:800;font-size:16px;border-radius:30px;
+    padding:14px 26px;transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-wa{background:var(--green);color:#fff;box-shadow:0 8px 20px rgba(31,170,85,.4)}
+  .btn-ghost{
+    background:transparent;color:var(--cream);border:1.5px solid rgba(247,239,227,.55);
+    margin-left:8px;font-size:14px;padding:13px 20px;
+  }
+  .hero-note{font-size:12px;color:#cbb894;margin-top:14px}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  section{padding:30px 0 6px}
+  .sec-head{text-align:center;margin-bottom:18px}
+  .sec-kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--caramel);font-weight:800}
+  .sec-title{font-size:26px;font-weight:900;color:var(--coffee);margin-top:4px}
+  .sec-sub{font-size:13px;color:var(--muted);margin-top:4px}
+  .divider{width:54px;height:3px;background:var(--caramel);border-radius:3px;margin:10px auto 0}
+
+  /* ---------- Menu ---------- */
+  .menu-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+  .tab{
+    border:1.5px solid var(--line);background:var(--card);color:var(--coffee);
+    font-size:13px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer;
+  }
+  .tab.active{background:var(--coffee);color:var(--cream);border-color:var(--coffee)}
+  .menu-grid{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:560px){.menu-grid{grid-template-columns:1fr 1fr}}
+  .item{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;display:flex;justify-content:space-between;gap:12px;
+    box-shadow:0 2px 6px rgba(59,36,22,.05);
+  }
+  .item h3{font-size:15px;font-weight:800;color:var(--coffee)}
+  .item p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .price{
+    font-weight:900;color:var(--caramel);white-space:nowrap;font-size:15px;text-align:right;
+  }
+  .price small{display:block;font-size:10px;color:var(--muted);font-weight:600}
+  .tag-pop{
+    display:inline-block;background:#fdeeda;color:#9a6524;font-size:10px;font-weight:800;
+    letter-spacing:.6px;padding:2px 8px;border-radius:10px;margin-top:6px;text-transform:uppercase;
+  }
+  .sample-note{text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
+
+  /* ---------- About / info cards ---------- */
+  .about-card{
+    background:linear-gradient(150deg,#fffaf2,#f3e7d0);
+    border:1px solid var(--line);border-radius:16px;padding:20px;
+    font-size:14.5px;color:#4a3826;
+  }
+  .about-card .urdu{direction:rtl;text-align:right;color:var(--caramel);font-weight:700;margin-top:10px;font-size:15px}
+  .info-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+  @media(min-width:560px){.info-grid{grid-template-columns:1fr 1fr}}
+  .info-card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;
+  }
+  .info-card h3{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--caramel);margin-bottom:8px}
+  .info-card p{font-size:14.5px;color:var(--coffee)}
+  .info-card .small{font-size:12.5px;color:var(--muted)}
+  .hours-row{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .hours-row:last-child{border-bottom:none}
+  .hours-row b{color:var(--coffee)}
+  .open-now{display:inline-block;background:#e4f7ec;color:#0f7a38;font-size:11px;font-weight:800;padding:2px 9px;border-radius:10px;margin-left:6px;vertical-align:middle}
+
+  /* ---------- More we can do ---------- */
+  .more{
+    background:linear-gradient(160deg,#4a2c17,var(--coffee-dark));
+    border-radius:18px;padding:24px 18px;color:var(--cream);margin-top:8px;
+  }
+  .more h2{font-size:22px;font-weight:900;text-align:center}
+  .more .sub{text-align:center;font-size:13px;color:#d9c8a9;margin:6px 0 18px}
+  .more-grid{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:560px){.more-grid{grid-template-columns:repeat(3,1fr)}}
+  .more-card{
+    background:rgba(255,250,242,.07);border:1px solid rgba(227,184,119,.35);
+    border-radius:14px;padding:16px 14px;
+  }
+  .more-num{
+    width:30px;height:30px;border-radius:50%;background:var(--caramel);color:var(--coffee-dark);
+    font-weight:900;display:flex;align-items:center;justify-content:center;font-size:14px;margin-bottom:10px;
+  }
+  .more-card h3{font-size:15px;font-weight:800;color:#ffd98f;margin-bottom:5px}
+  .more-card p{font-size:12.5px;color:#e8dcc4}
+
+  /* ---------- CTA band ---------- */
+  .cta{
+    text-align:center;padding:30px 16px 8px;
+  }
+  .cta h2{font-size:23px;font-weight:900;color:var(--coffee)}
+  .cta p{font-size:14px;color:var(--muted);margin:6px auto 18px;max-width:420px}
+  .cta .btn-call{background:var(--coffee);color:var(--cream);box-shadow:0 8px 20px rgba(59,36,22,.3);margin-left:8px;font-size:14px;padding:13px 20px}
+
+  /* ---------- Footer ---------- */
+  footer{
+    margin-top:34px;background:var(--coffee-dark);color:#cbb894;text-align:center;
+    padding:26px 16px 90px;font-size:12.5px;
+  }
+  footer .fbrand{color:var(--cream);font-size:16px;font-weight:800}
+  footer a{color:var(--caramel-soft)}
+  .credit{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:#a98f66}
+
+  /* ---------- Sticky order bar (mobile) ---------- */
+  .sticky-bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:55;
+    background:rgba(36,20,7,.97);padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    display:flex;gap:10px;box-shadow:0 -3px 14px rgba(0,0,0,.3);
+  }
+  .sticky-bar a{
+    flex:1;text-align:center;font-weight:800;font-size:14px;border-radius:24px;padding:12px 8px;
+  }
+  .sticky-wa{background:var(--green);color:#fff}
+  .sticky-call{background:transparent;color:var(--cream);border:1.5px solid rgba(247,239,227,.5)}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">DEMO</div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">C&amp;C</div>
+    <div>
+      <div class="brand-name">Cafe &amp; Co</div>
+      <div class="brand-sub">Rahim Yar Khan</div>
+    </div>
+  </div>
+  <a class="top-call" href="tel:+923036522333">Call Us</a>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">East Canal Road &middot; Rahim Yar Khan</div>
+  <h1>Cafe <span class="amp">&amp;</span> Co</h1>
+  <p class="hero-tag">Good food, fresh coffee and a place to slow down — served hot, every day.</p>
+  <p class="hero-urdu">مزیدار کھانا، تازہ کافی — آپ کے شہر میں</p>
+  <div class="hero-meta">
+    <span class="chip">Rated <b>3.8</b> on Google (103 reviews)</span>
+    <span class="chip">Open Daily <b>11 AM – 12 Midnight</b></span>
+    <span class="chip"><span class="demo-pill">DEMO</span>&nbsp; Sample website</span>
+  </div>
+  <a class="btn btn-wa" href="https://wa.me/923036522333" target="_blank" rel="noopener">Order on WhatsApp</a>
+  <a class="btn btn-ghost" href="#menu">View Menu</a>
+  <p class="hero-note">Tap the green button — your order goes straight to our WhatsApp: 0303 6522333</p>
+</div>
+
+<div class="wrap">
+
+  <!-- Menu -->
+  <section id="menu">
+    <div class="sec-head">
+      <div class="sec-kicker">Taste the Best</div>
+      <h2 class="sec-title">Our Menu</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">A sample selection — the full menu will be added on the live website.</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="tab active" data-cat="all">All</button>
+      <button class="tab" data-cat="fast">Fast Food</button>
+      <button class="tab" data-cat="desi">Desi</button>
+      <button class="tab" data-cat="drinks">Drinks</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <div class="item" data-cat="fast">
+        <div><h3>Chicken Zinger Burger</h3><p>Crispy fried chicken, fresh bun, house sauce &amp; fries.</p><span class="tag-pop">Most Ordered</span></div>
+        <div class="price">Rs 450</div>
+      </div>
+      <div class="item" data-cat="fast">
+        <div><h3>Club Sandwich</h3><p>Triple-layered with chicken, egg &amp; salad, served with fries.</p></div>
+        <div class="price">Rs 550</div>
+      </div>
+      <div class="item" data-cat="fast">
+        <div><h3>Loaded Fries</h3><p>Cheese sauce, chicken chunks, jalapenos &amp; our special drizzle.</p></div>
+        <div class="price">Rs 480</div>
+      </div>
+      <div class="item" data-cat="fast">
+        <div><h3>Chicken Cheese Pizza <small style="color:var(--muted)">(Medium)</small></h3><p>Hand-tossed base, mozzarella, chicken tikka topping.</p></div>
+        <div class="price">Rs 950</div>
+      </div>
+      <div class="item" data-cat="desi">
+        <div><h3>Chicken Karahi <small style="color:var(--muted)">(Half)</small></h3><p>Wok-cooked in tomato, green chillies &amp; ginger — desi style.</p><span class="tag-pop">Family Favourite</span></div>
+        <div class="price">Rs 1,100</div>
+      </div>
+      <div class="item" data-cat="desi">
+        <div><h3>BBQ Platter</h3><p>Seekh kebab, malai boti &amp; wings with naan and chutneys — serves 3–4.</p></div>
+        <div class="price">Rs 1,850</div>
+      </div>
+      <div class="item" data-cat="desi">
+        <div><h3>Chicken Biryani</h3><p>Fragrant layered rice with raita and salad.</p></div>
+        <div class="price">Rs 380</div>
+      </div>
+      <div class="item" data-cat="desi">
+        <div><h3>Daal Mash Fry</h3><p>Buttery daal mash with fresh naan — simple, fresh, desi.</p></div>
+        <div class="price">Rs 420</div>
+      </div>
+      <div class="item" data-cat="drinks">
+        <div><h3>Cold Coffee</h3><p>Blended thick with ice cream — the Cafe &amp; Co way.</p><span class="tag-pop">Must Try</span></div>
+        <div class="price">Rs 350</div>
+      </div>
+      <div class="item" data-cat="drinks">
+        <div><h3>Mint Margarita</h3><p>Fresh mint, lemon &amp; soda — cool and refreshing.</p></div>
+        <div class="price">Rs 250</div>
+      </div>
+      <div class="item" data-cat="drinks">
+        <div><h3>Fresh Lime Soda</h3><p>Sweet or salted, made to order.</p></div>
+        <div class="price">Rs 180</div>
+      </div>
+      <div class="item" data-cat="drinks">
+        <div><h3>Kashmiri Chai</h3><p>Pink tea with crushed nuts — a winter favourite.</p></div>
+        <div class="price">Rs 300</div>
+      </div>
+    </div>
+
+    <p class="sample-note">Sample prices for demonstration — final menu &amp; prices will be set by Cafe &amp; Co.</p>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="sec-head">
+      <div class="sec-kicker">Welcome</div>
+      <h2 class="sec-title">About Cafe &amp; Co</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="about-card">
+      <p>Cafe &amp; Co is Rahim Yar Khan's cosy spot on East Canal Road — where friends meet over coffee, families share a karahi, and every plate is made fresh to order. From crispy zingers to sizzling BBQ platters, our kitchen keeps it simple: good ingredients, honest prices and service with a smile.</p>
+      <p class="urdu">آئیں، بیٹھیں اور مزے لیں — Cafe &amp; Co آپ کی اپنی جگہ ہے۔</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Opening Hours <span class="open-now">Open Daily</span></h3>
+        <div class="hours-row"><span>Monday – Friday</span><b>11 AM – 12 Midnight</b></div>
+        <div class="hours-row"><span>Saturday</span><b>11 AM – 12 Midnight</b></div>
+        <div class="hours-row"><span>Sunday</span><b>11 AM – 12 Midnight</b></div>
+        <p class="small" style="margin-top:8px">Kitchen closes 30 minutes before closing time.</p>
+      </div>
+      <div class="info-card">
+        <h3>Find Us</h3>
+        <p>East Canal Road, near Bashir Garden,<br>Rahim Yar Khan, Pakistan</p>
+        <p class="small" style="margin:8px 0 12px">Follow us on Instagram: <b>@cafeandcoofficial</b></p>
+        <a class="btn" style="background:var(--coffee);color:var(--cream);font-size:14px;padding:11px 20px" href="tel:+923036522333">Call 0303 6522333</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- More we can do -->
+  <section id="more">
+    <div class="more">
+      <h2>More We Can Do For You</h2>
+      <p class="sub">This demo website is just the start. The same team can also build:</p>
+      <div class="more-grid">
+        <div class="more-card">
+          <div class="more-num">1</div>
+          <h3>Online Order Management System</h3>
+          <p>A simple dashboard where every WhatsApp and website order is recorded — no lost orders, easy daily totals and customer history.</p>
+        </div>
+        <div class="more-card">
+          <div class="more-num">2</div>
+          <h3>Mobile App for Regular Customers</h3>
+          <p>Your own app with the full menu, one-tap re-ordering, loyalty points and offers — so regulars order from you, not from anyone else.</p>
+        </div>
+        <div class="more-card">
+          <div class="more-num">3</div>
+          <h3>Advertisement Videos</h3>
+          <p>Short, eye-catching animated ad videos for Instagram and Facebook that show off your food and bring new customers to your door.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Hungry? Order in One Tap</h2>
+    <p>Send us your order on WhatsApp or call us — fresh and hot, at your table or your doorstep.</p>
+    <a class="btn btn-wa" href="https://wa.me/923036522333" target="_blank" rel="noopener">Order on WhatsApp</a>
+    <a class="btn cta btn-call" style="background:var(--coffee);color:var(--cream)" href="tel:+923036522333">Call Now</a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="fbrand">Cafe &amp; Co</div>
+  <p>East Canal Road, near Bashir Garden, Rahim Yar Khan<br>
+  WhatsApp / Phone: <a href="tel:+923036522333">0303 6522333</a> &middot; Instagram: @cafeandcoofficial</p>
+  <p style="margin-top:8px">This is a sample DEMO website prepared for presentation purposes only.</p>
+  <div class="credit">Demo website prepared by <b style="color:var(--caramel-soft)">Eman Kanwal</b> — Web Developer</div>
+</footer>
+
+<!-- Sticky order bar -->
+<div class="sticky-bar">
+  <a class="sticky-wa" href="https://wa.me/923036522333" target="_blank" rel="noopener">Order on WhatsApp</a>
+  <a class="sticky-call" href="tel:+923036522333">Call 0303 6522333</a>
+</div>
+
+<script>
+  // Simple menu category filter
+  (function(){
+    var tabs = document.querySelectorAll('.tab');
+    var items = document.querySelectorAll('#menuGrid .item');
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        tabs.forEach(function(t){ t.classList.remove('active'); });
+        tab.classList.add('active');
+        var cat = tab.getAttribute('data-cat');
+        items.forEach(function(it){
+          it.style.display = (cat === 'all' || it.getAttribute('data-cat') === cat) ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+
+<div style="margin:0;padding:20px 16px 26px;background:#0b7a64;color:#ffffff;text-align:center;font-family:Arial,sans-serif;">
+  <div style="font-size:15px;font-weight:700;margin-bottom:5px;">Free demo by Eman Kanwal — WordPress Website Designer</div>
+  <div style="font-size:13.5px;opacity:.92;">Like this style for your business? <a href="index.html" style="color:#ffd98a;font-weight:700;">View my portfolio</a> &nbsp;·&nbsp; <a href="mailto:emankanwal59@gmail.com" style="color:#ffd98a;font-weight:700;">emankanwal59@gmail.com</a></div>
+</div>
+</body>
+</html>
