@@ -156,6 +156,9 @@ section{padding:64px 0}
 .price li::before{content:"✓ ";color:var(--teal);font-weight:800}
 .price .btn{margin-top:auto;justify-content:center}
 
+/* package + care plan */
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+
 /* hosting plan */
 .host-wrap{background:var(--bg-soft);border-block:1px solid var(--line)}
 .host-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -205,7 +208,7 @@ footer{padding:30px 0 44px;color:var(--muted);font-size:13.5px}
   .browser3d{transform:none}
 }
 @media (max-width:560px){
-  .svc-grid,.work-grid,.price-grid,.host-grid,.host-steps{grid-template-columns:1fr}
+  .svc-grid,.work-grid,.price-grid,.host-grid,.host-steps,.pkg-grid{grid-template-columns:1fr}
   .nav-links a:not(.btn){display:none}
   .hero{padding-top:36px}
   section{padding:48px 0}
@@ -412,6 +415,45 @@ footer{padding:30px 0 44px;color:var(--muted);font-size:13.5px}
         </article>
       </div>
       <p class="small muted reveal" style="margin-top:16px">Need a 3D interactive site, a custom plugin/theme, or an app? <a href="#contact" style="font-weight:700;color:var(--teal)">Message me</a> — I'll quote it free after a quick check of your idea.</p>
+    </div>
+  </section>
+
+  <!-- PACKAGE & CARE PLANS -->
+  <section id="care-plans" style="padding-top:10px">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">Services &amp; Care Plans</div>
+        <h2>Complete Website Package &amp; Care Plans</h2>
+        <p>Everything done for you — your website built once, then kept safe and up to date every month.</p>
+      </div>
+      <div class="pkg-grid">
+        <article class="price pop reveal">
+          <span class="pop-badge">ALL-IN-ONE</span>
+          <h3>Complete Website Package</h3>
+          <div class="amt">$250 <small>/ from</small></div>
+          <p class="muted small">7–10 days delivery · 50% to start, 50% on delivery</p>
+          <ul>
+            <li>WordPress / Elementor website or WooCommerce store, mobile-friendly, with contact form</li>
+            <li>One AI promo video for the business included</li>
+            <li>Local SEO setup (Google Business Profile + on-page foundations)</li>
+            <li>Security setup (updates, protection, backups)</li>
+            <li>Free homepage sample before you decide</li>
+          </ul>
+          <a class="btn btn-teal" href="#contact" style="color:#fff">Start with the Package</a>
+        </article>
+        <article class="price reveal">
+          <h3>Monthly Care Plan</h3>
+          <div class="amt">$39 <small>/ month</small></div>
+          <p class="muted small">Cancel anytime — no long contract</p>
+          <ul>
+            <li>WordPress, plugin and theme updates</li>
+            <li>Security checks and backups</li>
+            <li>Small text/photo changes included</li>
+            <li>Your site stays safe and up to date, handled for you</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Add the Care Plan</a>
+        </article>
+      </div>
     </div>
   </section>
 
